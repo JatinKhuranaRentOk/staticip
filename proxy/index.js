@@ -8,7 +8,6 @@ module.exports = async function (context, req) {
     let parsedData = req.body;
     context.log('Request body:', parsedData);
     
-    
     // Handle case where body might be a string
     if (typeof parsedData === 'string') {
       parsedData = JSON.parse(parsedData);
