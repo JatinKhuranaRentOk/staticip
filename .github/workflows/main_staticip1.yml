@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js project to Azure App Service - staticip1
+name: Build and deploy Node.js project to Azure Function App - static-ip-proxy-function
 
 on:
   push:
@@ -71,10 +71,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2442501E077145E49E33AE9FD6CD651F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1E232F8019094BFEA33B849CC1B5B090 }}
 
-      - name: 'Deploy to Azure App Service'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: fa
         with:
-          app-name: 'staticip1'
+          app-name: 'static-ip-proxy-function'
           slot-name: 'Production'
-          package: .
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
